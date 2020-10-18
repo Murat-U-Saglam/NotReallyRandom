@@ -1,12 +1,14 @@
 import csv
 import hashlib
 import random
-import os
+import datetime
+import base64
 
 firstname = []
 surname = []
 hashOfFirst = []
 hashOfSecond = []
+averageHashArray = []
 
 #Organising the array
 with open('names.csv', "r") as csv_file:
@@ -17,7 +19,7 @@ with open('names.csv', "r") as csv_file:
         surname.append(row[1])
 
 
-#Use maybe for later
+#Hash the first and second name
 for x in range(len(firstname)-1):
     hashedFirstName = hashlib.sha256(firstname[x].encode('utf-8')).hexdigest()
     hashOfFirst.append(hashedFirstName)
@@ -30,7 +32,29 @@ def getRandomPerson():
     print(firstname[randomIndex], surname[randomIndex])
 
 def randomlyrandom():
-    print("Being Created")
+    currentTime= str(datetime.datetime.now())
+    hashOfCurrentTime = hashlib.sha256(currentTime.encode('utf-8')).hexdigest()
+    averageHash()
+    hashOfCurrentTimeAsInt = int(hashOfCurrentTime, 16)
+    Difference=99999999999999999999999
+    savedIndex=0
+    for x in range(len(averageHashArray)):
+        temp = averageHashArray[x] =  hashOfCurrentTimeAsInt
+        if temp <=0:
+            temp = temp * -1
+        if temp < Difference:
+            temp = Difference
+            x = savedIndex
+    print(firstname[savedIndex], surname[savedIndex])
+
+
+    
+def averageHash():
+    for x in range(len(hashOfFirst)):
+        a = int(hashOfFirst[x], 16)
+        b = int(hashOfSecond[x], 16)
+        averageHashArray.append(a+b//2)
+
 
 def main():
     while True:
