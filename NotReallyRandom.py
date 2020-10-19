@@ -58,8 +58,7 @@ def averageHash():
 
 
 def notSoRandom():
-    while True:
-        print(". o O @ * \a")
+    print("Being Made atm")
 
 
 def main():
