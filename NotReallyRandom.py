@@ -3,6 +3,8 @@ import hashlib
 import random
 import datetime
 import base64
+from getpass import getpass
+import time
 
 firstname = []
 surname = []
@@ -58,7 +60,26 @@ def averageHash():
 
 
 def notSoRandom():
-    print("Being Made atm")
+    chosenOne = getpass("")
+    chosenOne=chosenOne.capitalize()
+    x = 0
+    while True:
+        print(".")
+        time.sleep(0.01)
+        print(". o")
+        time.sleep(0.01)
+        print(". o O")
+        time.sleep(0.01)
+        print(". o O @")
+        time.sleep(0.01)
+        print(". o O @ * \a")
+        time.sleep(0.01)
+        if firstname[x] != chosenOne:
+            x+=1
+        else:
+            print(firstname[x], surname[x])
+            break
+
 
 
 def main():
