@@ -73,6 +73,6 @@ def main():
         elif Flag == "rrr":
             notSoRandom()
         else:
-            print("Print Error Input, Double check your Input")
+            print("Error Input, Double check your Input")
 
 main()
