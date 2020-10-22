@@ -18,11 +18,12 @@ with open('names.csv', "r") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
     for row in csv_reader:
-        firstname.append(row[0])
-        surname.append(row[1])
+        firstname.append(row[1])
+        surname.append(row[0])
 
 
 def getRandomPerson():
+    loadingScren()
     random.seed(None)
     randomIndex = random.randint(0,len(firstname)-1)
     print(firstname[randomIndex], surname[randomIndex])
@@ -37,6 +38,7 @@ for x in range(len(firstname)-1):
 
 
 def randomlyrandom():
+    loadingScren()
     currentTime= str(datetime.datetime.now())
     hashOfCurrentTime = hashlib.sha256(currentTime.encode('utf-8')).hexdigest()
     averageHash()
@@ -59,12 +61,8 @@ def averageHash():
         b = int(hashOfSecond[x], 16)
         averageHashArray.append(a+b//2)
 
-
-def notSoRandom():
-    chosenOne = getpass("")
-    chosenOne=chosenOne.capitalize()
-    x = 0
-    while True:
+def loadingScren():
+    for x in range(20):
         print(".")
         time.sleep(0.01)
         print(". o")
@@ -75,14 +73,19 @@ def notSoRandom():
         time.sleep(0.01)
         print(". o O @ * \a")
         time.sleep(0.01)
-        if firstname[x] != chosenOne:
-            x+=1
-        else:
-            print(firstname[x], surname[x])
-            break
+
+def notSoRandom():
+    chosenOne = getpass("")
+    chosenOne=chosenOne.upper()
+    for x in range(len(firstname)-1):
+        if firstname[x] == chosenOne:
+            desiredIndex = x
+    loadingScren()
+    print(firstname[desiredIndex], surname[desiredIndex])
 
 
 def cwdPick():
+    loadingScren()
     currentDirectory = os.getcwd()
     hashOfcurrentDirectory = hashlib.sha256(currentDirectory.encode('utf-8')).hexdigest()
     averageHash()
